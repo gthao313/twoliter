@@ -1073,6 +1073,32 @@ pubsys \
 '''
 ]
 
+[tasks.fetch-variant]
+dependencies = ["publish-setup-without-key", "fetch-sources"]
+script_runner = "bash"
+script = [
+'''
+set -e
+
+export PATH="${TWOLITER_TOOLS_DIR}:${PATH}"
+
+pubsys \
+   --log-level "${PUBLISH_LOG_LEVEL}" \
+   --infra-config-path "${PUBLISH_INFRA_CONFIG_PATH}" \
+   \
+   fetch-variant \
+   \
+   --repo "${PUBLISH_REPO}" \
+   --arch "${BUILDSYS_ARCH}" \
+   --variant "${BUILDSYS_VARIANT}" \
+   \
+   --root-role-path "${PUBLISH_REPO_ROOT_JSON}" \
+   --outdir "${BUILDSYS_VARIANT_DIR}"\
+   --buildsys-name-friendly "${BUILDSYS_NAME_FRIENDLY}"
+
+'''
+]
+
 [tasks.check-repo-expirations]
 dependencies = ["publish-setup-without-key", "fetch-sources"]
 script_runner = "bash"

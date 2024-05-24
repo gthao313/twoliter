@@ -2002,6 +2002,26 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "90ed8c1e510134f979dbc4f070f87d4313098b704861a105fe34231c70a3901c"
 
 [[package]]
+name = "lz4"
+version = "1.24.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7e9e2dd86df36ce760a60f6ff6ad526f7ba1f14ba0356f8254fb6905e6494df1"
+dependencies = [
+ "libc",
+ "lz4-sys",
+]
+
+[[package]]
+name = "lz4-sys"
+version = "1.9.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "57d27b317e207b10f69f5e75494119e391a96f48861ae870d1da6edac98ca900"
+dependencies = [
+ "cc",
+ "libc",
+]
+
+[[package]]
 name = "maplit"
 version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2436,10 +2456,12 @@ dependencies = [
  "coldsnap",
  "duct",
  "futures",
+ "futures-core",
  "governor",
  "indicatif",
  "lazy_static",
  "log",
+ "lz4",
  "nonzero_ext",
  "num_cpus",
  "parse-datetime",
@@ -2456,6 +2478,7 @@ dependencies = [
  "tinytemplate",
  "tokio",
  "tokio-stream",
+ "tokio-util",
  "toml",
  "tough",
  "tough-kms",
@@ -3517,6 +3540,7 @@ checksum = "5419f34732d9eb6ee4c3578b7989078579b7f039cbbb9ca2c4da015749371e15"
 dependencies = [
  "bytes",
  "futures-core",
+ "futures-io",
  "futures-sink",
  "pin-project-lite",
  "tokio",
